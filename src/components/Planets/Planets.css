@@ -1,0 +1,9 @@
+.planets{
+    display: flex;
+    gap: 20px;
+}
+
+.planet{
+    width: 100px;
+    height: 100px;
+}
