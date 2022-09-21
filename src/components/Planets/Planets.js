@@ -1,27 +1,44 @@
 import './Planets.css';
 import { motion } from "framer-motion";
+import {planets} from '../../planets.js';
+import {useState} from "react";
 
-const planets = [
-    'mercury.png',
-    'venus.png',
-    'earth.png',
-    'mars.png',
-    'jupiter.png',
-    'uranus.png',
-    'neptune.png',
-    'pluto.png'
-];
+const variantSetter = (x) =>{
+    return{
+        open: {x: x, y: -350, scale: 5},
+        closed: {x: 0, y: 0}
+    }
+};
 
 const Planets = () => {
+    const [isOpen, setIsOpen] = useState({
+        mercury: false,
+        venus: false,
+        earth: false,
+        mars: false,
+        jupiter: false,
+        uranus: false,
+        neptune: false,
+        pluto: false
+    });
+
+    const onPlanetClickHandler = (name) =>{
+        setIsOpen({...isOpen, [name]: !isOpen[name]})
+    };
+
     return(
         <>
             <section className="planets">
-                {planets.map(x => (
+                {planets.map(planet => (
                     <motion.img
+                        key={planet.name}
                         className="planet"
-                        src={require(`../../assets/planets/${x}`)}
+                        src={require(`../../assets/planets/${planet.name}.png`)}
                         alt="planet"
-                        whileHover={{scale: 2}}
+                        onClick={() => onPlanetClickHandler(planet.name)}
+                        animate={isOpen[planet.name] ? 'open' : 'closed'}
+                        whileHover={!isOpen[planet.name] ? {scale: 1.2} : null}
+                        variants={variantSetter(planet.x)}
                     />
                 ))}
             </section>
