@@ -5,25 +5,35 @@ import {useState} from "react";
 
 const variantSetter = (x) =>{
     return{
-        open: {x: x, y: -350, scale: 5},
-        closed: {x: 0, y: 0}
-    }
-};
+        open: {
+            x: x,
+            y: -350,
+            transition:{
+                type: 'spring',
+                stiffness: 70
+            },
+            scale: 5
+        },
+        closed: {
+            x: 0,
+            y: 0,
+            transition:{
+                type: 'spring',
+                stiffness: 50}
+            }
+        }
+    };
 
 const Planets = () => {
-    const [isOpen, setIsOpen] = useState({
-        mercury: false,
-        venus: false,
-        earth: false,
-        mars: false,
-        jupiter: false,
-        uranus: false,
-        neptune: false,
-        pluto: false
-    });
+    const [selectedPlanet, setSelectedPlanet] = useState('');
 
     const onPlanetClickHandler = (name) =>{
-        setIsOpen({...isOpen, [name]: !isOpen[name]})
+        if (selectedPlanet === name){
+            setSelectedPlanet('');
+        }
+        else{
+            setSelectedPlanet(name);
+        }
     };
 
     return(
@@ -36,8 +46,8 @@ const Planets = () => {
                         src={require(`../../assets/planets/${planet.name}.png`)}
                         alt="planet"
                         onClick={() => onPlanetClickHandler(planet.name)}
-                        animate={isOpen[planet.name] ? 'open' : 'closed'}
-                        whileHover={!isOpen[planet.name] ? {scale: 1.2} : null}
+                        animate={selectedPlanet === planet.name ? 'open' : 'closed'}
+                        whileHover={selectedPlanet !== planet.name ? {scale: 1.2, transition:{duration:0.5}} : null}
                         variants={variantSetter(planet.x)}
                     />
                 ))}
