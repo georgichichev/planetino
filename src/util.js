@@ -14,7 +14,7 @@ export const variantSetter = (planet) => {
             y: planet.initial.y,
             transition: {
                 type: 'spring',
-                stiffness: 50
+                stiffness: 30
             },
             scale: planet?.scale
         },
