@@ -11,3 +11,9 @@
     width: 100px;
     height: 100px;
 }
+
+.text{
+    position: absolute;
+    color: #d4e6e6;
+    font-size: 40px;
+}

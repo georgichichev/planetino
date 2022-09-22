@@ -3,32 +3,58 @@ import { motion } from "framer-motion";
 import {planets} from '../../planets.js';
 import {useState} from "react";
 
-const variantSetter = (x) =>{
-    return{
+const variantSetter = (planet) => {
+    return {
         open: {
-            x: x,
+            x: planet.open.x,
             y: -350,
-            transition:{
+            transition: {
                 type: 'spring',
                 stiffness: 70
             },
             scale: 5
         },
-        closed: {
-            x: 0,
-            y: 0,
-            transition:{
+        initial: {
+            x: planet.initial.x,
+            y: planet.initial.y,
+            transition: {
                 type: 'spring',
-                stiffness: 50}
-            }
+                stiffness: 50
+            },
+            scale: planet?.scale
+        },
+        dimmed: {
+            opacity: 0,
+            transition:{
+              duration: 0.3
+            },
+            scale: planet?.scale,
+            x: planet.initial.x,
+            y: planet.initial.y
         }
     };
+}
+
+const animationSetter = (planet, selectedPlanet) =>{
+    if(selectedPlanet === ''){
+        return 'initial'
+    }
+    else if(selectedPlanet !== planet){
+        return 'dimmed'
+    }
+    else if(selectedPlanet === planet){
+        return 'open'
+    }
+}
 
 const Planets = () => {
     const [selectedPlanet, setSelectedPlanet] = useState('');
 
     const onPlanetClickHandler = (name) =>{
         if (selectedPlanet === name){
+            setSelectedPlanet('');
+        }
+        else if(name === 'sun'){
             setSelectedPlanet('');
         }
         else{
@@ -38,6 +64,13 @@ const Planets = () => {
 
     return(
         <>
+            <motion.p
+                className="text"
+                initial={{opacity: 0}}
+                animate={{opacity:1, transition:{duration:2}}}
+            >
+                Planet text here
+            </motion.p>
             <section className="planets">
                 {planets.map(planet => (
                     <motion.img
@@ -46,9 +79,8 @@ const Planets = () => {
                         src={require(`../../assets/planets/${planet.name}.png`)}
                         alt="planet"
                         onClick={() => onPlanetClickHandler(planet.name)}
-                        animate={selectedPlanet === planet.name ? 'open' : 'closed'}
-                        whileHover={selectedPlanet !== planet.name ? {scale: 1.2, transition:{duration:0.5}} : null}
-                        variants={variantSetter(planet.x)}
+                        animate={animationSetter(planet.name, selectedPlanet)}
+                        variants={variantSetter(planet)}
                     />
                 ))}
             </section>
