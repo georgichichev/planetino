@@ -26,11 +26,18 @@ const Planets = () => {
     return(
         <>
             <motion.p
-                className="text"
-                initial={{opacity: 0, scale: 0.25}}
-                animate={{opacity:1, scale: 1, transition:{duration:3}}}
+                className="heading"
+                initial={{opacity: 0,y: -50}}
+                animate={{opacity:1,y: 0, transition:{duration:2.5}}}
             >
                 Discover Solar System
+            </motion.p>
+            <motion.p
+                className="selectHeading"
+                initial={{opacity: 0, y:150}}
+                animate={{opacity:1, y:0, transition:{duration:1, delay:2}}}
+            >
+                select a planet
             </motion.p>
             <section className="planets">
                 {planets.map(planet => (

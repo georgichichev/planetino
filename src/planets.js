@@ -1,7 +1,7 @@
 export const planets = [
     {
         name: 'mercury',
-        initial: {x: 850, y: -400},
+        initial: {x: 820, y: -400},
         open:{x: 560}
     },
     {
@@ -41,7 +41,7 @@ export const planets = [
     },
     {
         name: 'sun',
-        initial: {x: -550, y: -270},
+        initial: {x: -570, y: -270},
         open:{x: -550},
         scale: 5
     },
