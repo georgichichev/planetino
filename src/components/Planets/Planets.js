@@ -2,7 +2,8 @@ import './Planets.css';
 import { motion } from "framer-motion";
 import {planets} from '../../planets.js';
 import {useEffect, useState} from "react";
-import {variantSetter, animationSetter} from "../../util.js";
+import {planetsVariantSetter, planetsAnimationSetter} from "../../util.js";
+import PlanetsHomeInfo from "../PlanetsHomeInfo/PlanetsHomeInfo.js";
 
 const Planets = () => {
     const [selectedPlanet, setSelectedPlanet] = useState({name: '', initialAnimation: true});
@@ -25,20 +26,7 @@ const Planets = () => {
 
     return(
         <>
-            <motion.p
-                className="heading"
-                initial={{opacity: 0,y: -50}}
-                animate={{opacity:1,y: 0, transition:{duration:2.5}}}
-            >
-                Discover Solar System
-            </motion.p>
-            <motion.p
-                className="selectHeading"
-                initial={{opacity: 0, y:150}}
-                animate={{opacity:1, y:0, transition:{duration:1, delay:2}}}
-            >
-                select a planet
-            </motion.p>
+            <PlanetsHomeInfo/>
             <section className="planets">
                 {planets.map(planet => (
                     <motion.img
@@ -47,8 +35,8 @@ const Planets = () => {
                         src={require(`../../assets/planets/${planet.name}.png`)}
                         alt="planet"
                         onClick={() => onPlanetClickHandler(planet.name)}
-                        animate={animationSetter(planet.name, selectedPlanet)}
-                        variants={variantSetter(planet)}
+                        animate={planetsAnimationSetter(planet.name, selectedPlanet)}
+                        variants={planetsVariantSetter(planet)}
                     />
                 ))}
             </section>

@@ -1,0 +1,42 @@
+.heading{
+    position: absolute;
+    top: 50px;
+    text-align: center;
+    width: 100%;
+    color: #e8efef;
+    font-size: 100px;
+}
+
+.selectHeading{
+    position: absolute;
+    bottom: 180px;
+    text-align: center;
+    width: 100%;
+    color: #e8efef;
+    font-size: 35px;
+}
+
+.planetsInfo{
+    font-family: "Open Sans";
+    position: absolute;
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+    bottom: 40px;
+    text-align: center;
+    width: 100%;
+    color: #e8efef;
+    font-size: 25px;
+}
+
+.planetsInfo .divider:last-of-type{
+    display: none;
+}
+
+.divider{
+    width: 1px;
+    height: 40px;
+    background-color: white;
+}
+

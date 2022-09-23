@@ -12,20 +12,3 @@
     height: 100px;
 
 }
-.heading{
-    position: absolute;
-    top: 50px;
-    text-align: center;
-    width: 100%;
-    color: #e8efef;
-    font-size: 100px;
-}
-
-.selectHeading{
-    position: absolute;
-    bottom: 100px;
-    text-align: center;
-    width: 100%;
-    color: #e8efef;
-    font-size: 30px;
-}
