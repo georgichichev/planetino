@@ -2,7 +2,7 @@ export const variantSetter = (planet) => {
     return {
         open: {
             x: planet.open.x,
-            y: -350,
+            y: -250,
             transition: {
                 type: 'spring',
                 stiffness: 70
@@ -12,11 +12,15 @@ export const variantSetter = (planet) => {
         initial: {
             x: planet.initial.x,
             y: planet.initial.y,
-            transition: {
-                type: 'spring',
-                stiffness: 30
+            transition:{
+                duration: 2.5
             },
             scale: planet?.scale
+        },
+        close:{
+            x: planet.initial.x,
+            y: planet.initial.y,
+            scale: planet?.scale,
         },
         dimmed: {
             opacity: 0,
@@ -31,13 +35,16 @@ export const variantSetter = (planet) => {
 }
 
 export const animationSetter = (planet, selectedPlanet) =>{
-    if(selectedPlanet === ''){
+    if(selectedPlanet.initialAnimation){
         return 'initial'
     }
-    else if(selectedPlanet !== planet){
+    else if(selectedPlanet.name === ''){
+        return 'close'
+    }
+    else if(selectedPlanet.name !== planet){
         return 'dimmed'
     }
-    else if(selectedPlanet === planet){
+    else if(selectedPlanet.name === planet){
         return 'open'
     }
 }
