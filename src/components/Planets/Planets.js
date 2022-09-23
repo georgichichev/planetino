@@ -1,21 +1,25 @@
 import './Planets.css';
 import { motion } from "framer-motion";
 import {planets} from '../../planets.js';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {variantSetter, animationSetter} from "../../util.js";
 
 const Planets = () => {
-    const [selectedPlanet, setSelectedPlanet] = useState('');
+    const [selectedPlanet, setSelectedPlanet] = useState({name: '', initialAnimation: true});
+
+    useEffect(() =>{
+        setSelectedPlanet({...selectedPlanet, initialAnimation: false});
+    }, []);
 
     const onPlanetClickHandler = (name) =>{
         if (selectedPlanet === name){
-            setSelectedPlanet('');
+            setSelectedPlanet({...selectedPlanet, name: ''});
         }
         else if(name === 'sun'){
-            setSelectedPlanet('');
+            setSelectedPlanet({...selectedPlanet, name: ''});
         }
         else{
-            setSelectedPlanet(name);
+            setSelectedPlanet({...selectedPlanet, name});
         }
     };
 
@@ -23,10 +27,10 @@ const Planets = () => {
         <>
             <motion.p
                 className="text"
-                initial={{opacity: 0}}
-                animate={{opacity:1, transition:{duration:2}}}
+                initial={{opacity: 0, scale: 0.25}}
+                animate={{opacity:1, scale: 1, transition:{duration:3}}}
             >
-                Planet text here
+                Discover Solar System
             </motion.p>
             <section className="planets">
                 {planets.map(planet => (

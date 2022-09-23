@@ -6,8 +6,9 @@
 body{
     background: url("./assets/planets/bg.jpg") no-repeat center;
     background-size: cover;
-    font-family: "Sora";
+    font-family: 'Blacker Display';
     letter-spacing: 2px;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 }
