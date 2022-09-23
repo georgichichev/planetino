@@ -1,48 +1,48 @@
 export const planets = [
     {
         name: 'mercury',
-        initial: {x: 850, y: -450},
-        open:{x: 570,y: -300}
+        initial: {x: 850, y: -400},
+        open:{x: 560}
     },
     {
         name: 'venus',
-        initial: {x: 100, y: -400},
-        open:{x: 420,y: -300}
+        initial: {x: 100, y: -350},
+        open:{x: 420}
     },
     {
         name: 'earth',
-        initial: {x: 700, y: -250},
-        open:{x: 280,y: -300}
+        initial: {x: 700, y: -200},
+        open:{x: 280}
     },
     {
         name: 'mars',
-        initial: {x: -400, y: -200},
-        open:{x: 150,y: -300}
+        initial: {x: -400, y: -150},
+        open:{x: 140}
     },
     {
         name: 'jupiter',
-        initial: {x: 700, y: -650},
-        open:{x: 0,y: -300}
+        initial: {x: 700, y: -600},
+        open:{x: 0}
     },
     {
         name: 'uranus',
-        initial: {x: -950, y: -500},
-        open:{x:-140 ,y: -300}
+        initial: {x: -950, y: -450},
+        open:{x:-140 }
     },
     {
         name: 'neptune',
-        initial: {x: 550, y: -30},
-        open:{x: -280,y: -300}
+        initial: {x: 550, y: 20},
+        open:{x: -280}
     },
     {
         name: 'pluto',
-        initial: {x: -1300, y: 50},
-        open:{x: -420,y: -300}
+        initial: {x: -1300, y: 130},
+        open:{x: -420}
     },
     {
         name: 'sun',
-        initial: {x: -550, y: -320},
-        open:{x: -550,y: -300},
+        initial: {x: -550, y: -270},
+        open:{x: -550},
         scale: 5
     },
 ];
