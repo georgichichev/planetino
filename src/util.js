@@ -1,4 +1,4 @@
-export const variantSetter = (planet) => {
+export const planetsVariantSetter = (planet) => {
     return {
         open: {
             x: planet.open.x,
@@ -12,19 +12,19 @@ export const variantSetter = (planet) => {
         initial: {
             x: planet.initial.x,
             y: planet.initial.y,
-            transition:{
+            transition: {
                 duration: 2.5
             },
             scale: planet?.scale
         },
-        close:{
+        close: {
             x: planet.initial.x,
             y: planet.initial.y,
             scale: planet?.scale,
         },
         dimmed: {
             opacity: 0,
-            transition:{
+            transition: {
                 duration: 0.3
             },
             scale: planet?.scale,
@@ -32,19 +32,50 @@ export const variantSetter = (planet) => {
             y: planet.initial.y
         }
     };
-}
+};
 
-export const animationSetter = (planet, selectedPlanet) =>{
-    if(selectedPlanet.initialAnimation){
+export const planetsAnimationSetter = (planet, selectedPlanet, didMount) => {
+    if (didMount) {
         return 'initial'
-    }
-    else if(selectedPlanet.name === ''){
+    } else if (selectedPlanet === '') {
         return 'close'
-    }
-    else if(selectedPlanet.name !== planet){
+    } else if (selectedPlanet !== planet) {
         return 'dimmed'
-    }
-    else if(selectedPlanet.name === planet){
+    } else if (selectedPlanet === planet) {
         return 'open'
+    }
+};
+
+export const infoInitialSetter = (didMount, component) => {
+    if (!didMount) {
+        return {opacity: 0.1}
+    } else {
+        switch (component) {
+            case 'heading':
+                return {opacity: 0, scale: 0.25}
+            case 'selectHeading':
+                return {y: 230}
+            case 'planetsInfo':
+                return {y: 210}
+            default:
+                return null
+        }
+    }
+};
+
+export const infoAnimationSetter = (didMount, component, delay) =>{
+    if(!didMount){
+        return {opacity: 1}
+    } else {
+        switch (component) {
+            case 'heading':
+                return {opacity: 1, scale: 1, transition: {duration: 3}}
+            case 'selectHeading':
+                return {y: 0, transition: {duration: 2, delay: 5.5}}
+            case 'planetsInfo':
+                return {y: 0, transition: {duration: 1, delay}}
+            default:
+                return null
+        }
     }
 }

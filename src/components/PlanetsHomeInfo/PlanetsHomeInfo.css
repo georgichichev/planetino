@@ -20,7 +20,7 @@
     font-family: "Open Sans";
     position: absolute;
     display: flex;
-    gap: 100px;
+    gap: 200px;
     justify-content: center;
     align-items: center;
     bottom: 40px;
@@ -28,15 +28,5 @@
     width: 100%;
     color: #e8efef;
     font-size: 25px;
-}
-
-.planetsInfo .divider:last-of-type{
-    display: none;
-}
-
-.divider{
-    width: 1px;
-    height: 40px;
-    background-color: white;
 }
 
