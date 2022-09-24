@@ -1,32 +1,40 @@
 import './Planets.css';
 import { motion } from "framer-motion";
 import {planets} from '../../planets.js';
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {planetsVariantSetter, planetsAnimationSetter} from "../../util.js";
 import PlanetsHomeInfo from "../PlanetsHomeInfo/PlanetsHomeInfo.js";
 
 const Planets = () => {
-    const [selectedPlanet, setSelectedPlanet] = useState({name: '', initialAnimation: true});
+    const [selectedPlanet, setSelectedPlanet] = useState('');
+
+    const didMount = useRef({planets: true, info: true});
 
     useEffect(() =>{
-        setSelectedPlanet({...selectedPlanet, initialAnimation: false});
-    }, []);
+        didMount.current.planets = false;
+        if (selectedPlanet !== ''){
+            didMount.current.info = false;
+        }
+    }, [selectedPlanet]);
 
     const onPlanetClickHandler = (name) =>{
         if (selectedPlanet === name){
-            setSelectedPlanet({...selectedPlanet, name: ''});
+            setSelectedPlanet('');
         }
         else if(name === 'sun'){
-            setSelectedPlanet({...selectedPlanet, name: ''});
+            setSelectedPlanet('');
         }
         else{
-            setSelectedPlanet({...selectedPlanet, name});
+            setSelectedPlanet(name);
         }
     };
 
     return(
         <>
-            <PlanetsHomeInfo/>
+            {selectedPlanet === '' ?
+                <PlanetsHomeInfo didMount={didMount.current.info}/>
+                : null
+            }
             <section className="planets">
                 {planets.map(planet => (
                     <motion.img
@@ -35,7 +43,7 @@ const Planets = () => {
                         src={require(`../../assets/planets/${planet.name}.png`)}
                         alt="planet"
                         onClick={() => onPlanetClickHandler(planet.name)}
-                        animate={planetsAnimationSetter(planet.name, selectedPlanet)}
+                        animate={planetsAnimationSetter(planet.name, selectedPlanet, didMount.current.planets)}
                         variants={planetsVariantSetter(planet)}
                     />
                 ))}
