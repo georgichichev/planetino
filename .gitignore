@@ -129,3 +129,6 @@ yarn-error.log*
 .idea/modules.xml
 .idea/planetino.iml
 .idea/vcs.xml
+.firebase/hosting.YnVpbGQ.cache
+.firebaserc
+firebase.json
