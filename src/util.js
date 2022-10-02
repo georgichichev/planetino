@@ -52,7 +52,7 @@ export const infoInitialSetter = (didMount, component) => {
     } else {
         switch (component) {
             case 'heading':
-                return {opacity: 0, scale: 0.25}
+                return {opacity: 0, scale: 0.75}
             case 'selectHeading':
                 return {y: 230}
             case 'planetsInfo':
@@ -69,9 +69,9 @@ export const infoAnimationSetter = (didMount, component, delay) =>{
     } else {
         switch (component) {
             case 'heading':
-                return {opacity: 1, scale: 1, transition: {duration: 3}}
+                return {opacity: 1, scale: 1, transition: {duration: 2}}
             case 'selectHeading':
-                return {y: 0, transition: {duration: 2, delay: 5.5}}
+                return {y: 0, transition: {duration: 2, delay: 5}}
             case 'planetsInfo':
                 return {y: 0, transition: {duration: 1, delay}}
             default:

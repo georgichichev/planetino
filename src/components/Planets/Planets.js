@@ -4,6 +4,7 @@ import {planets} from '../../planets.js';
 import {useEffect, useRef, useState} from "react";
 import {planetsVariantSetter, planetsAnimationSetter} from "../../util.js";
 import PlanetsHomeInfo from "../PlanetsHomeInfo/PlanetsHomeInfo.js";
+import PlanetInfo from "../PlanetInfo/PlanetInfo.js";
 
 const Planets = () => {
     const [selectedPlanet, setSelectedPlanet] = useState('');
@@ -33,7 +34,7 @@ const Planets = () => {
         <>
             {selectedPlanet === '' ?
                 <PlanetsHomeInfo didMount={didMount.current.info}/>
-                : null
+                : <PlanetInfo info={planets.find(x => x.name === selectedPlanet)}/>
             }
             <section className="planets">
                 {planets.map(planet => (
