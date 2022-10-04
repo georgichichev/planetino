@@ -25,6 +25,9 @@ const Planets = () => {
         else if(name === 'sun'){
             setSelectedPlanet('');
         }
+        else if(selectedPlanet !== '' && name !== selectedPlanet){
+            return
+        }
         else{
             setSelectedPlanet(name);
         }
@@ -40,6 +43,7 @@ const Planets = () => {
                 {planets.map(planet => (
                     <motion.img
                         key={planet.name}
+                        data-testid={planet.name}
                         className="planet"
                         src={require(`../../assets/planets/${planet.name}.png`)}
                         alt="planet"
