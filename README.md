@@ -18,6 +18,10 @@ You will need `node` installed globally on your machine.
 
 `npm start`
 
+#### To Start All Test Suites:
+
+`npm test`
+
 #### To Visit App locally:
 
 `http://localhost:3000`
