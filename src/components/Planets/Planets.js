@@ -1,5 +1,5 @@
 import './Planets.css';
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import {planets} from '../../planets.js';
 import {useEffect, useRef, useState} from "react";
 import {planetsVariantSetter, planetsAnimationSetter} from "../../util.js";
@@ -11,29 +11,26 @@ const Planets = () => {
 
     const didMount = useRef({planets: true, info: true});
 
-    useEffect(() =>{
+    useEffect(() => {
         didMount.current.planets = false;
-        if (selectedPlanet !== ''){
+        if (selectedPlanet !== '') {
             didMount.current.info = false;
         }
     }, [selectedPlanet]);
 
-    const onPlanetClickHandler = (name) =>{
-        if (selectedPlanet === name){
+    const onPlanetClickHandler = (name) => {
+        if (selectedPlanet === name) {
             setSelectedPlanet('');
-        }
-        else if(name === 'sun'){
+        } else if (name === 'sun') {
             setSelectedPlanet('');
-        }
-        else if(selectedPlanet !== '' && name !== selectedPlanet){
+        } else if (selectedPlanet !== '' && name !== selectedPlanet) {
             return
-        }
-        else{
+        } else {
             setSelectedPlanet(name);
         }
     };
 
-    return(
+    return (
         <>
             {selectedPlanet === '' ?
                 <PlanetsHomeInfo didMount={didMount.current.info}/>
@@ -41,16 +38,17 @@ const Planets = () => {
             }
             <section className="planets">
                 {planets.map(planet => (
-                    <motion.img
-                        key={planet.name}
-                        data-testid={planet.name}
-                        className="planet"
-                        src={require(`../../assets/planets/${planet.name}.png`)}
-                        alt="planet"
-                        onClick={() => onPlanetClickHandler(planet.name)}
-                        animate={planetsAnimationSetter(planet.name, selectedPlanet, didMount.current.planets)}
-                        variants={planetsVariantSetter(planet)}
-                    />
+                        <motion.img
+                            key={planet.name}
+                            data-testid={planet.name}
+                            className="planet"
+                            src={require(`../../assets/planets/${planet.name}.png`)}
+                            alt="planet"
+                            onClick={() => onPlanetClickHandler(planet.name)}
+                            whileHover={planet.name !== 'sun' && selectedPlanet === '' ? {scale: 1.1} : null}
+                            animate={planetsAnimationSetter(planet.name, selectedPlanet, didMount.current.planets)}
+                            variants={planetsVariantSetter(planet)}
+                        />
                 ))}
             </section>
         </>
